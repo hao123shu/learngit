@@ -1,0 +1,118 @@
+﻿Last login: Wed Aug 26 17:38:26 2015 from 120.42.100.147
+
+Welcome to aliyun Elastic Compute Service!
+
+[root@iZ25lyctuhxZ ~]# w
+ 10:28:59 up 16 days, 22:10,  1 user,  load average: 0.00, 0.00, 0.00
+USER     TTY      FROM              LOGIN@   IDLE   JCPU   PCPU WHAT
+root     pts/0    218.85.115.147   10:28    0.00s  0.00s  0.00s w
+[root@iZ25lyctuhxZ ~]# free -m
+             total       used       free     shared    buffers     cached
+Mem:          3829       1500       2328          0        169        309
+-/+ buffers/cache:       1022       2806
+Swap:            0          0          0
+[root@iZ25lyctuhxZ ~]# df -h
+Filesystem      Size  Used Avail Use% Mounted on
+/dev/xvda1       20G  2.5G   17G  14% /
+tmpfs           1.9G     0  1.9G   0% /dev/shm
+[root@iZ25lyctuhxZ ~]# netstat -tulpn|grep tcp                    
+tcp        0      0 0.0.0.0:8080                0.0.0.0:*                   LISTEN      9172/java           
+tcp        0      0 0.0.0.0:22                  0.0.0.0:*                   LISTEN      960/sshd            
+tcp        0      0 127.0.0.1:8005              0.0.0.0:*                   LISTEN      9172/java           
+tcp        0      0 0.0.0.0:8009                0.0.0.0:*                   LISTEN      9172/java           
+[root@iZ25lyctuhxZ ~]# ps -ef |grep tomcat    
+root      9172     1  0 Aug26 ?        00:06:16 /usr/java/jdk1.8.0_45/bin/java -Djava.util.logging.config.file=/usr/local/tomcat/conf/logging.properties -Djava.util.logging.manager=org.apache.juli.ClassLoaderLogManager -Djava.endorsed.dirs=/usr/local/tomcat/endorsed -classpath /usr/local/tomcat/bin/bootstrap.jar:/usr/local/tomcat/bin/tomcat-juli.jar -Dcatalina.base=/usr/local/tomcat -Dcatalina.home=/usr/local/tomcat -Djava.io.tmpdir=/usr/local/tomcat/temp org.apache.catalina.startup.Bootstrap start
+root     11180 11156  0 10:35 pts/0    00:00:00 grep tomcat
+[root@iZ25lyctuhxZ ~]# service iptables status
+表格：filter
+Chain INPUT (policy ACCEPT)
+num  target     prot opt source               destination         
+1    ACCEPT     tcp  --  0.0.0.0/0            0.0.0.0/0           tcp dpt:8080 
+2    DROP       tcp  --  0.0.0.0/0            0.0.0.0/0           tcp dpt:8080 
+3    ACCEPT     tcp  --  0.0.0.0/0            0.0.0.0/0           tcp dpt:8080 
+4    DROP       tcp  --  0.0.0.0/0            0.0.0.0/0           tcp dpt:8080 
+5    ACCEPT     tcp  --  0.0.0.0/0            0.0.0.0/0           tcp dpt:8080 
+6    ACCEPT     tcp  --  0.0.0.0/0            0.0.0.0/0           tcp dpt:8080 
+7    DROP       tcp  --  0.0.0.0/0            0.0.0.0/0           tcp dpt:8080 
+8    ACCEPT     tcp  --  0.0.0.0/0            0.0.0.0/0           tcp dpt:8080 
+9    DROP       tcp  --  0.0.0.0/0            0.0.0.0/0           tcp dpt:8080 
+10   ACCEPT     tcp  --  0.0.0.0/0            0.0.0.0/0           tcp dpt:8080 
+11   DROP       tcp  --  0.0.0.0/0            0.0.0.0/0           tcp dpt:8080 
+12   ACCEPT     all  --  0.0.0.0/0            0.0.0.0/0           state RELATED,ESTABLISHED 
+13   ACCEPT     icmp --  0.0.0.0/0            0.0.0.0/0           
+14   ACCEPT     all  --  0.0.0.0/0            0.0.0.0/0           
+15   ACCEPT     tcp  --  0.0.0.0/0            0.0.0.0/0           state NEW tcp dpt:22 
+16   ACCEPT     tcp  --  0.0.0.0/0            0.0.0.0/0           state NEW tcp dpt:80 
+17   ACCEPT     tcp  --  0.0.0.0/0            0.0.0.0/0           state NEW tcp dpt:443 
+18   ACCEPT     tcp  --  0.0.0.0/0            0.0.0.0/0           state NEW tcp dpt:8080 
+19   REJECT     all  --  0.0.0.0/0            0.0.0.0/0           reject-with icmp-host-prohibited 
+
+Chain FORWARD (policy ACCEPT)
+num  target     prot opt source               destination         
+1    REJECT     all  --  0.0.0.0/0            0.0.0.0/0           reject-with icmp-host-prohibited 
+
+Chain OUTPUT (policy ACCEPT)
+num  target     prot opt source               destination         
+
+[root@iZ25lyctuhxZ ~]# w
+ 10:36:47 up 16 days, 22:18,  1 user,  load average: 0.00, 0.00, 0.00
+USER     TTY      FROM              LOGIN@   IDLE   JCPU   PCPU WHAT
+root     pts/0    218.85.115.147   10:28    0.00s  0.00s  0.00s w
+[root@iZ25lyctuhxZ ~]# ssh 10.251.209.210      
+root@10.251.209.210's password: 
+Welcome to Ubuntu 14.04.2 LTS (GNU/Linux 3.13.0-32-generic x86_64)
+
+ * Documentation:  https://help.ubuntu.com/
+
+Welcome to aliyun Elastic Compute Service!
+
+Last login: Wed Aug 26 10:41:29 2015 from 10.170.236.141
+root@iZ25fovar8cZ:~# ip ad
+1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN group default 
+    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+    inet 127.0.0.1/8 scope host lo
+       valid_lft forever preferred_lft forever
+2: eth0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc pfifo_fast state UP group default qlen 1000
+    link/ether 00:16:3e:00:01:2c brd ff:ff:ff:ff:ff:ff
+    inet 10.251.209.210/21 brd 10.251.215.255 scope global eth0
+       valid_lft forever preferred_lft forever
+root@iZ25fovar8cZ:~# ps -ef|grep mongodb   
+root      4010     1  0 Jul24 ?        03:29:06 /usr/local/mongodb/bin/mongod -f /etc/mongodb.ini
+root      4869  4846  0 10:37 pts/0    00:00:00 grep --color=auto mongodb
+root@iZ25fovar8cZ:~# df -h
+Filesystem      Size  Used Avail Use% Mounted on
+/dev/xvda1       20G  1.9G   17G  11% /
+none            4.0K     0  4.0K   0% /sys/fs/cgroup
+udev            2.0G  4.0K  2.0G   1% /dev
+tmpfs           396M  376K  395M   1% /run
+none            5.0M     0  5.0M   0% /run/lock
+none            2.0G     0  2.0G   0% /run/shm
+none            100M     0  100M   0% /run/user
+/dev/xvdb1       50G  5.7G   41G  13% /data
+root@iZ25fovar8cZ:~# free -m
+             total       used       free     shared    buffers     cached
+Mem:          3951       1245       2706          0        300        631
+-/+ buffers/cache:        313       3638
+Swap:            0          0          0
+root@iZ25fovar8cZ:~# ssh 10.251.214.118   
+root@10.251.214.118's password: 
+Welcome to Ubuntu 14.04.2 LTS (GNU/Linux 3.13.0-32-generic x86_64)
+
+ * Documentation:  https://help.ubuntu.com/
+
+Welcome to aliyun Elastic Compute Service!
+
+Last login: Wed Aug 26 10:41:45 2015 from 10.251.209.210
+root@iZ25vxvm5loZ:~# ps -ef|grep mongo   
+root      3196     1  0 Jul24 ?        02:43:59 /usr/local/mongodb/bin/mongod -f /etc/mongodb.ini
+root     27287 27265  0 10:37 pts/0    00:00:00 grep --color=auto mongo
+root@iZ25vxvm5loZ:~# df -h
+Filesystem      Size  Used Avail Use% Mounted on
+/dev/xvda1       20G  1.6G   17G   9% /
+none            4.0K     0  4.0K   0% /sys/fs/cgroup
+udev            2.0G  4.0K  2.0G   1% /dev
+tmpfs           396M  376K  395M   1% /run
+none            5.0M     0  5.0M   0% /run/lock
+none            2.0G     0  2.0G   0% /run/shm
+none            100M     0  100M   0% /run/user
+/dev/xvdb1       50G  1.6G   46G   4% /data
